@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{0141D35E-1A04-419B-9E41-21877EA362C5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
+    <Content Include="gulpfile.js" />
+    <Content Include="src\appConfig.js" />
+    <Content Include="src\config.js" />
+    <Content Include="src\Controllers\AboutModalController.js" />
+    <Content Include="src\Controllers\controller.module.js" />
+    <Content Include="src\Controllers\FilterModalController.js" />
+    <Content Include="src\Controllers\MapController.js" />
+    <Content Include="src\Controllers\Navbarcontroller.js" />
+    <Content Include="src\Controllers\SidebarController.js" />
+    <Content Include="src\Controllers\SiteInfoModalController.js" />
+    <Content Include="src\Controllers\SiteListController.js" />
+    <Content Include="src\css\main.css" />
+    <Content Include="src\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="src\images\arrows.gif" />
+    <Content Include="src\images\basin.png" />
+    <Content Include="src\images\layers-2x.png" />
+    <Content Include="src\images\layers.png" />
+    <Content Include="src\images\marker-icon-2x.png" />
+    <Content Include="src\images\marker-icon.png" />
+    <Content Include="src\images\marker-shadow.png" />
+    <Content Include="src\images\multi_sw_act.png" />
+    <Content Include="src\images\multi_sw_act_blank.png" />
+    <Content Include="src\images\regulated-basin.png" />
+    <Content Include="src\images\sw_act_30.png" />
+    <Content Include="src\images\tool-box.png" />
+    <Content Include="src\images\usgs-logo.png" />
+    <Content Include="src\images\wim.png" />
+    <Content Include="src\images\wimvectorxs.png" />
+    <Content Include="src\index.html" />
+    <Content Include="src\Models\GroundWaterWatchSite.js" />
+    <Content Include="src\Models\Models.module.js" />
+    <Content Include="src\Models\SitesFilter.js" />
+    <Content Include="src\Services\ExplorationService.js" />
+    <Content Include="src\Services\GroundWaterWatchService.js" />
+    <Content Include="src\Services\ModalService.js" />
+    <Content Include="src\Services\service.module.js" />
+    <Content Include="src\version.js" />
+    <Content Include="src\Views\aboutmodal.html" />
+    <Content Include="src\Views\filtermodal.html" />
+    <Content Include="src\Views\mapview.html" />
+    <Content Include="src\Views\navigationview.html" />
+    <Content Include="src\Views\sidebarview.html" />
+    <Content Include="src\Views\siteinfomodal.html" />
+    <Content Include="src\Views\sitelistview.html" />
+    <Content Include="web.config" />
+    <Content Include=".jshintrc" />
+    <None Include="custom.pubxml" />
+    <Content Include="README.md" />
+    <Content Include="src\config.js.map" />
+    <Content Include="src\Controllers\AboutModalController.js.map" />
+    <Content Include="src\Controllers\controller.module.js.map" />
+    <Content Include="src\Controllers\FilterModalController.js.map" />
+    <Content Include="src\Controllers\MapController.js.map" />
+    <Content Include="src\Controllers\Navbarcontroller.js.map" />
+    <Content Include="src\Controllers\SidebarController.js.map" />
+    <Content Include="src\Controllers\SiteInfoModalController.js.map" />
+    <Content Include="src\Controllers\SiteListController.js.map" />
+    <Content Include="src\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="src\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="src\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="src\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="src\Models\GroundWaterWatchSite.js.map" />
+    <Content Include="src\Models\Models.module.js.map" />
+    <Content Include="src\Models\SitesFilter.js.map" />
+    <Content Include="src\Services\ExplorationService.js.map" />
+    <Content Include="src\Services\GroundWaterWatchService.js.map" />
+    <Content Include="src\Services\ModalService.js.map" />
+    <Content Include="src\Services\service.module.js.map" />
+    <None Include="_references.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="typings.json" />
+    <Content Include="package.json" />
+    <Content Include="bower.json" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <Content Include="_references.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\config.ts" />
+    <TypeScriptCompile Include="src\Controllers\AboutModalController.ts" />
+    <TypeScriptCompile Include="src\Controllers\controller.module.ts" />
+    <TypeScriptCompile Include="src\Controllers\FilterModalController.ts" />
+    <TypeScriptCompile Include="src\Controllers\MapController.ts" />
+    <TypeScriptCompile Include="src\Controllers\Navbarcontroller.ts" />
+    <TypeScriptCompile Include="src\Controllers\SidebarController.ts" />
+    <TypeScriptCompile Include="src\Controllers\SiteInfoModalController.ts" />
+    <TypeScriptCompile Include="src\Controllers\SiteListController.ts" />
+    <TypeScriptCompile Include="src\Models\GroundWaterWatchSite.ts" />
+    <TypeScriptCompile Include="src\Models\Models.module.ts" />
+    <TypeScriptCompile Include="src\Models\SitesFilter.ts" />
+    <TypeScriptCompile Include="src\Services\ExplorationService.ts" />
+    <TypeScriptCompile Include="src\Services\GroundWaterWatchService.ts" />
+    <TypeScriptCompile Include="src\Services\ModalService.ts" />
+    <TypeScriptCompile Include="src\Services\service.module.ts" />
+    <TypeScriptCompile Include="_references.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Mapper</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>SiglAngular</AssemblyName>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58323</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58323/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+</Project>
