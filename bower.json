@@ -1,7 +1,7 @@
 {
-  "name": "GroundWaterWatch",
+  "name": "sigl-angular",
   "version": "0.0.1",
-  "homepage": "https://github.com/USGS-WiM/GroundWaterWatch",
+  "homepage": "https://github.com/USGS-WiM/SIGL",
   "authors": [
     "Jeremy Newson <jknewson@usgs.gov>",
     "Martyn Smith <marsmith@usgs.gov>"
@@ -39,7 +39,8 @@
     "angularjs-slider": "^2.9.0",
     "angular-nvd3": "^1.0.5",
     "ng-file-upload": "~12.0.1",
-    "angular-resizable": "^1.2.0"
+    "angular-resizable": "^1.2.0",
+    "isteven-angular-multiselect": "^4.0.0"
   },
   "resolutions": {
     "angular": "1.3.20"

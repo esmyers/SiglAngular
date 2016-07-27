@@ -14,8 +14,8 @@
 //Comments
 //05.11.2016 jkn - Created
 //Import
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Controllers;
     (function (Controllers) {
         'use string';
@@ -40,8 +40,8 @@ var GroundWaterWatch;
             AboutModalController.$inject = ['$scope', '$modalInstance'];
             return AboutModalController;
         }()); //end  class
-        angular.module('GroundWaterWatch.Controllers')
-            .controller('GroundWaterWatch.Controllers.AboutModalController', AboutModalController);
-    })(Controllers = GroundWaterWatch.Controllers || (GroundWaterWatch.Controllers = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module 
+        angular.module('SIGL.Controllers')
+            .controller('SIGL.Controllers.AboutModalController', AboutModalController);
+    })(Controllers = SIGL.Controllers || (SIGL.Controllers = {}));
+})(SIGL || (SIGL = {})); //end module 
 //# sourceMappingURL=AboutModalController.js.map

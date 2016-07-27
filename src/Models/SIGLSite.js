@@ -45,4 +45,4 @@ var SIGL;
         Models.GroundWaterSite = GroundWaterSite; //end class
     })(Models = SIGL.Models || (SIGL.Models = {}));
 })(SIGL || (SIGL = {})); //end module 
-//# sourceMappingURL=GroundWaterWatchSite.js.map
+//# sourceMappingURL=SIGLSite.js.map

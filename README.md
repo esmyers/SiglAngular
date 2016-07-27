@@ -1,5 +1,5 @@
 # Science in the Great Lakes
-##### adapted from [USGS GroundWaterWatch] (https://github.com/USGS-WiM/GroundWaterWatch)
+##### adapted from [USGS SIGL] (https://github.com/USGS-WiM/SIGL)
 
 ## Project setup
 

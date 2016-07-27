@@ -53,13 +53,6 @@
     <Content Include="src\images\wim.png" />
     <Content Include="src\images\wimvectorxs.png" />
     <Content Include="src\index.html" />
-    <Content Include="src\Models\GroundWaterWatchSite.js" />
-    <Content Include="src\Models\Models.module.js" />
-    <Content Include="src\Models\SitesFilter.js" />
-    <Content Include="src\Services\ExplorationService.js" />
-    <Content Include="src\Services\GroundWaterWatchService.js" />
-    <Content Include="src\Services\ModalService.js" />
-    <Content Include="src\Services\service.module.js" />
     <Content Include="src\version.js" />
     <Content Include="src\Views\aboutmodal.html" />
     <Content Include="src\Views\filtermodal.html" />
@@ -72,7 +65,6 @@
     <Content Include=".jshintrc" />
     <None Include="custom.pubxml" />
     <Content Include="README.md" />
-    <Content Include="src\config.js.map" />
     <Content Include="src\Controllers\AboutModalController.js.map" />
     <Content Include="src\Controllers\controller.module.js.map" />
     <Content Include="src\Controllers\FilterModalController.js.map" />
@@ -85,13 +77,7 @@
     <Content Include="src\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="src\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="src\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="src\Models\GroundWaterWatchSite.js.map" />
-    <Content Include="src\Models\Models.module.js.map" />
-    <Content Include="src\Models\SitesFilter.js.map" />
-    <Content Include="src\Services\ExplorationService.js.map" />
-    <Content Include="src\Services\GroundWaterWatchService.js.map" />
-    <Content Include="src\Services\ModalService.js.map" />
-    <Content Include="src\Services\service.module.js.map" />
+    <Content Include="src\config.js.map" />
     <None Include="_references.js" />
   </ItemGroup>
   <ItemGroup>
@@ -116,11 +102,10 @@
     <TypeScriptCompile Include="src\Controllers\SidebarController.ts" />
     <TypeScriptCompile Include="src\Controllers\SiteInfoModalController.ts" />
     <TypeScriptCompile Include="src\Controllers\SiteListController.ts" />
-    <TypeScriptCompile Include="src\Models\GroundWaterWatchSite.ts" />
+    <TypeScriptCompile Include="src\Models\SIGLSite.ts" />
     <TypeScriptCompile Include="src\Models\Models.module.ts" />
     <TypeScriptCompile Include="src\Models\SitesFilter.ts" />
-    <TypeScriptCompile Include="src\Services\ExplorationService.ts" />
-    <TypeScriptCompile Include="src\Services\GroundWaterWatchService.ts" />
+    <TypeScriptCompile Include="src\Services\SIGLService.ts" />
     <TypeScriptCompile Include="src\Services\ModalService.ts" />
     <TypeScriptCompile Include="src\Services\service.module.ts" />
     <TypeScriptCompile Include="_references.ts" />
@@ -157,6 +142,17 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
     <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>

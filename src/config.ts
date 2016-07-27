@@ -2,7 +2,7 @@
 //http://www.funnyant.com/angularjs-ui-router/
 
 declare var configuration: any;
-module GroundWaterWatch {
+module SIGL {
     //'use strict';
 
     class config {
@@ -15,16 +15,16 @@ module GroundWaterWatch {
                 views: {
                     'map': {
                         templateUrl: "Views/mapview.html",
-                        controller: "GroundWaterWatch.Controllers.MapController"
+                        controller: "SIGL.Controllers.MapController"
                     },
                     'sidebar': {
                         templateUrl: "Views/sidebarview.html",
-                        controller: "GroundWaterWatch.Controllers.SidebarController"
+                        controller: "SIGL.Controllers.SidebarController"
 
                     },
                     'navbar': {
                         templateUrl: "Views/navigationview.html",
-                        controller: "GroundWaterWatch.Controllers.NavbarController"
+                        controller: "SIGL.Controllers.NavbarController"
                     }
                 }
             })//end main state 
@@ -33,22 +33,22 @@ module GroundWaterWatch {
             
             this.$locationProvider.html5Mode(true);   
             
-            //turns of angular-leaflet console spam
+            //turns off angular-leaflet console spam
             this.$logProvider.debugEnabled(false);    
 
                                 
         }//end constructor
     }//end class
 
-    angular.module('SiglAngular',[
+    angular.module('SIGL',[
         'ui.router', 'ui.bootstrap','ui.checkbox',
         'mobile-angular-ui',
         'angulartics', 'angulartics.google.analytics',
         'toaster', 'ngAnimate', 'ngFileUpload',
         'leaflet-directive',
-        'GroundWaterWatch.Services',
-        'GroundWaterWatch.Controllers',
-        'WiM.Services', 'WiM.Event', 'wim_angular','angularResizable'
+        'SIGL.Services',
+        'SIGL.Controllers',
+        'WiM.Services', 'WiM.Event', 'wim_angular','angularResizable', 'isteven-multi-select'
         ])
         .config(config);
 }//end module 

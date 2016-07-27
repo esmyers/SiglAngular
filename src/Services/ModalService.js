@@ -18,8 +18,8 @@
 //Comments
 //06.16.2015 mjs - Created
 //Import
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Services;
     (function (Services) {
         'use strict';
@@ -49,7 +49,7 @@ var GroundWaterWatch;
                         case ModalType.e_filter:
                             return {
                                 templateUrl: 'Views/filtermodal.html',
-                                controller: 'GroundWaterWatch.Controllers.FilterModalController',
+                                controller: 'SIGL.Controllers.FilterModalController',
                                 size: 'lg',
                                 backdropClass: 'backdropZ',
                                 backdrop: 'static',
@@ -58,7 +58,7 @@ var GroundWaterWatch;
                         case ModalType.e_about:
                             return {
                                 templateUrl: 'Views/aboutmodal.html',
-                                controller: 'GroundWaterWatch.Controllers.AboutModalController',
+                                controller: 'SIGL.Controllers.AboutModalController',
                                 size: 'lg',
                                 backdropClass: 'backdropZ',
                                 backdrop: 'static',
@@ -67,7 +67,7 @@ var GroundWaterWatch;
                         case ModalType.e_siteinfo:
                             return {
                                 templateUrl: 'Views/siteinfomodal.html',
-                                controller: 'GroundWaterWatch.Controllers.SiteInfoModalController',
+                                controller: 'SIGL.Controllers.SiteInfoModalController',
                                 size: 'lg',
                                 backdropClass: 'backdropZ',
                                 backdrop: 'static',
@@ -76,7 +76,7 @@ var GroundWaterWatch;
                         default:
                             return {
                                 templateUrl: 'Views/aboutmodal.html',
-                                controller: 'GroundWaterWatch.Controllers.AboutModalController',
+                                controller: 'SIGL.Controllers.AboutModalController',
                                 size: 'lg',
                                 backdropClass: 'backdropZ',
                                 backdrop: 'static',
@@ -100,8 +100,8 @@ var GroundWaterWatch;
         function factory($modal) {
             return new ModalService($modal);
         }
-        angular.module('GroundWaterWatch.Services')
-            .factory('GroundWaterWatch.Services.ModalService', factory);
-    })(Services = GroundWaterWatch.Services || (GroundWaterWatch.Services = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module  
+        angular.module('SIGL.Services')
+            .factory('SIGL.Services.ModalService', factory);
+    })(Services = SIGL.Services || (SIGL.Services = {}));
+})(SIGL || (SIGL = {})); //end module  
 //# sourceMappingURL=ModalService.js.map

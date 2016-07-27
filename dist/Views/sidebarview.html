@@ -51,12 +51,39 @@
                 <a ng-class="vm.selectedProcedure == 3  ? 'list-group-item-active': 'list-group-item'" ng-click="vm.setProcedureType(3)">Filters<div></div><i ng-class="vm.selectedProcedure == 3 ? 'fa fa-chevron-right pull-right': 'fa fa-chevron-down pull-right'"></i></a>
                 <div class="list-group-body" ng-hide="vm.selectedProcedure != 3">
                     <div class="wim-alert">something about filters</div>
-                    <div ng-repeat="filter in vm.SelectedFilters track by $index">
-                        <button class="btn-wim-sm btn-wim-default btn-group-justified" ng-click="vm.removeFilter($index,filter)"><i class="fa fa-times pull-right"></i>&nbsp;&nbsp;<span>{{filter.Name}} </span></button>
-                    </div>
+                    <select class="btn-wim-sm" ng-model="vm.SIGLServices.SelecteParameter">
+                        <option ng-repeat="item in vm.SIGLServices.ParameterList" value="{{item}}">{{item.parameter}}</option>
+                    </select>
                     <div class="row">
                         <div class="col-md-6"><button ng-click=" vm.ClearFilters()" type="button" class="btn-wim-sm btn-wim btn-wim-group-1"><i class="fa fa-ban"></i>&nbsp;&nbsp;Clear Filters</button></div>
-                        <div class="col-md-6"><button ng-click=" vm.AddFilter()" type="button" class="btn-wim-sm btn-wim-info btn-wim-group-1"><i class="fa fa-filter"></i>&nbsp;&nbsp;Add Filter</button></div>
+                        <div class="col-md-6"><button ng-click=" vm.AddFilter()" type="button" class="btn-wim-sm btn-wim-info btn-wim-group-1"><i class="fa fa-filter"></i>&nbsp;&nbsp;Search</button></div>
+                    </div>
+                </div>
+                <!--<div class="form-item item-20">
+                    <label for="event_id">Parameters_Isteven</label>
+                    <div isteven-multi-select
+                         input-model="ParameterList"
+                         output-model="Chosen.state"
+                         button-label="state_name"
+                         item-label="state_name"
+                         max-height="300px"
+                         on-item-click="stateClick(data)"
+                         tick-property="selected"
+                         helper-elements="filter">
+
+                    </div>
+                </div>-->
+                <div class="form-item item-20">
+                    <label for="event_id">Resources_Isteven</label>
+                    <div isteven-multi-select
+                         input-model="vm.ResourceList"
+                         button-label="resource_name"
+                         item-label="resource_name"
+                         max-height="300px"
+                         on-item-click="resourceClick(data)"
+                         tick-property="selected"
+                         helper-elements="filter">
+
                     </div>
                 </div>
             </div>

@@ -13,37 +13,34 @@
 //discussion:
 //Comments
 //05.11.2016 jkn - Created
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Controllers;
     (function (Controllers) {
         'use string';
         var FilterModalController = (function () {
-            function FilterModalController($scope, modal, gwwService) {
+            function FilterModalController($scope, modal, SIGLService) {
                 $scope.vm = this;
                 this.modalInstance = modal;
-                this.GWWService = gwwService;
+                this.SIGLService = SIGLService;
                 this.init();
             }
             //Methods  
             //-+-+-+-+-+-+-+-+-+-+-+-
             FilterModalController.prototype.Close = function () {
-                if (this.SelectedStates.length > 0)
-                    this.GWWService.AddFilterTypes(this.SelectedStates);
-                if (this.SelectedCounties.length > 0)
-                    this.GWWService.AddFilterTypes(this.SelectedCounties);
-                if (this.SelectedAquifers.length > 0)
-                    this.GWWService.AddFilterTypes(this.SelectedAquifers);
+                //if(this.SelectedStates.length >0) this.GWWService.AddFilterTypes(this.SelectedStates);
+                //if (this.SelectedCounties.length > 0) this.GWWService.AddFilterTypes(this.SelectedCounties);
+                //if (this.SelectedAquifers.length > 0) this.GWWService.AddFilterTypes(this.SelectedAquifers);
                 this.modalInstance.dismiss('cancel');
             };
             FilterModalController.prototype.AddStateFilter = function (item) {
-                this.SelectedStates.push(new GroundWaterWatch.Models.GroundWaterFilterSite(item, GroundWaterWatch.Models.FilterType.STATE));
+                this.SelectedStates.push(new SIGL.Models.GroundWaterFilterSite(item, SIGL.Models.FilterType.STATE));
             };
             FilterModalController.prototype.AddCountyFilter = function (item) {
-                this.SelectedCounties.push(new GroundWaterWatch.Models.GroundWaterFilterSite(item, GroundWaterWatch.Models.FilterType.COUNTY));
+                this.SelectedCounties.push(new SIGL.Models.GroundWaterFilterSite(item, SIGL.Models.FilterType.COUNTY));
             };
             FilterModalController.prototype.AddAquiferFilter = function (item) {
-                this.SelectedAquifers.push(new GroundWaterWatch.Models.GroundWaterFilterSite(item, GroundWaterWatch.Models.FilterType.AQUIFER));
+                this.SelectedAquifers.push(new SIGL.Models.GroundWaterFilterSite(item, SIGL.Models.FilterType.AQUIFER));
             };
             //Helper Methods
             //-+-+-+-+-+-+-+-+-+-+-+-
@@ -55,11 +52,11 @@ var GroundWaterWatch;
             };
             //Constructor
             //-+-+-+-+-+-+-+-+-+-+-+-
-            FilterModalController.$inject = ['$scope', '$modalInstance', 'GroundWaterWatch.Services.GroundWaterWatchService'];
+            FilterModalController.$inject = ['$scope', '$modalInstance', 'SIGL.Services.SIGLService'];
             return FilterModalController;
         }()); //end  class
-        angular.module('GroundWaterWatch.Controllers')
-            .controller('GroundWaterWatch.Controllers.FilterModalController', FilterModalController);
-    })(Controllers = GroundWaterWatch.Controllers || (GroundWaterWatch.Controllers = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module 
+        angular.module('SIGL.Controllers')
+            .controller('SIGL.Controllers.FilterModalController', FilterModalController);
+    })(Controllers = SIGL.Controllers || (SIGL.Controllers = {}));
+})(SIGL || (SIGL = {})); //end module 
 //# sourceMappingURL=FilterModalController.js.map

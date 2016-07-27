@@ -2,5 +2,5 @@
     'use strict';
 
     angular
-        .module('GroundWaterWatch.Controllers', []);
+        .module('SIGL.Controllers', []);
 })();

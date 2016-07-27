@@ -5,7 +5,8 @@ configuration.baseurls =
     'NWISurl': 'http://waterservices.usgs.gov/nwis',
     'SearchAPI': 'http://txpub.usgs.gov/DSS/search_api/1.1/dataService/dataService.ashx',
     'NationalMapRasterServices': 'http://raster.nationalmap.gov/arcgis/rest/services',
-    'GroundWaterWatch': 'http://cida-test.er.usgs.gov/ngwmn-geoserver'
+    'SIGLServices': 'https://sigldev.wim.usgs.gov/'
+    
 }
 
 configuration.queryparams =
@@ -16,7 +17,14 @@ configuration.queryparams =
 
 configuration.basemaps =
 {
-    national: {
+
+    gray: {
+        name: "ESRI Gray",
+        type: "agsBase",
+        layer: "Gray",
+        visible: true
+    },
+    "national": {
         name: "National Geographic",
         type: "agsBase",
         layer: "NationalGeographic",
@@ -75,12 +83,7 @@ configuration.basemaps =
         layer: "Oceans",
         visible: false
     },
-    gray: {
-        name: "ESRI Gray",
-        type: "agsBase",
-        layer: "Gray",
-        visible: true
-    },
+    
     imagery: {
         name: "ESRI Imagery",
         type: "agsBase",
@@ -141,17 +144,49 @@ configuration.basemaps =
 }// end baselayer
 
 configuration.overlayedLayers = {
-    states: {
-        name: 'States',
-        type: 'agsDynamic',
-        url: 'https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer',
-        visible: true,
-        layerOptions: {
-            layers: [3],
-            opacity: .25
-        }
-    },
-    gww: {
+   
+    //tribalReservations: {
+    //    name: 'Tribal Reservation Boundaries',
+    //    type: 'agsDynamic',
+    //    url: 'http://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/',
+    //    visible: true,
+    //    layerOptions: {
+    //        layers: [4],
+    //        opacity: .5
+    //    }
+    //},
+    //cededTribalBoundaries: {
+    //    name: 'Ceded Tribal Boundaries',
+    //    type: 'agsDynamic',
+    //    url: 'http://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/',
+    //    visible: true,
+    //    layerOptions: {
+    //        layers: [5],
+    //        opacity: .5
+    //    }
+    //},
+    //GLRI: {
+    //    name: 'USGS GLRI Nutrient Monitoring Basins',
+    //    type: 'agsDynamic',
+    //    url: 'http://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/',
+    //    visible: true,
+    //    layerOptions: {
+    //        layers: [2],
+    //        opacity: .5
+    //    }
+    //},
+
+    //basins: {
+    //    name: 'Great Lakes Basins',
+    //    type: 'agsDynamic',
+    //    url: 'http://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/',
+    //    visible: true,
+    //    layerOptions: {
+    //        layers: [3],
+    //        opacity: .5
+    //    }
+    //},
+    AAsiglSites: {
         name: 'SIGL Sites',
         type: 'wms',
         visible: true,
@@ -160,9 +195,21 @@ configuration.overlayedLayers = {
             layers: 'usgs:site',
             format: 'image/png',
             transparent: true,
-            version: '1.1.0'
-            
-            }
+            version: '1.1.0',
+            zIndex: '10'
+
+        }
+    },
+    AOC: {
+        name: 'EPA Areas of Concern',
+        type: 'agsDynamic',
+        url: 'http://gis.wim.usgs.gov/arcgis/rest/services/SIGL/SIGLMapper/MapServer/',
+        visible: true,
+        layerOptions: {
+            layers: [1],
+            opacity: .5
+        }
     }
+
     //http://docs.geoserver.org/stable/en/user/services/wms/reference.html#wms-getmap
 }//end overlayedLayers

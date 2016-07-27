@@ -23,7 +23,7 @@
 //05.13.2016 jkn - Created
 
 //Imports"
-module GroundWaterWatch.Controllers {
+module SIGL.Controllers {
     'use strict';
     interface ISiteListControllerScope extends ng.IScope {
         vm: SiteListController;
@@ -35,17 +35,17 @@ module GroundWaterWatch.Controllers {
     class SiteListController implements ISiteListController {
         //Properties
         //-+-+-+-+-+-+-+-+-+-+-+-
-        private gwwServices: Services.IGroundWaterWatchService;
+        private siglServices: Services.ISIGLService;
         public SiteList: Array<Models.GroundWaterSite>;
         public isShown: boolean;
 
         //Constructor
         //-+-+-+-+-+-+-+-+-+-+-+-
-        static $inject = ['$scope','GroundWaterWatch.Services.GroundWaterWatchService'];
-        constructor($scope: ISiteListControllerScope, gwwservice:Services.IGroundWaterWatchService) {
+        static $inject = ['$scope','SIGL.Services.SIGLService'];
+        constructor($scope: ISiteListControllerScope, siglservice:Services.ISIGLService) {
             $scope.vm = this;
-            this.gwwServices = gwwservice;
-            this.SiteList = gwwservice.GWSiteList;
+            this.siglServices = siglservice;
+           // this.SiteList = gwwservice.GWSiteList;
             this.isShown = true;
         }
 
@@ -61,8 +61,8 @@ module GroundWaterWatch.Controllers {
         
 
     }//end class
-    angular.module('GroundWaterWatch.Controllers')
-       .controller('GroundWaterWatch.Controllers.SiteListController', SiteListController)
+    angular.module('SIGL.Controllers')
+       .controller('SIGL.Controllers.SiteListController', SiteListController)
 
 }//end module
   

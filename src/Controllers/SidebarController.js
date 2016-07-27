@@ -15,18 +15,18 @@
 //Comments
 //04.14.2015 jkn - Created
 //Imports"
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Controllers;
     (function (Controllers) {
-        'use strinct';
+        'use strict';
         var SidebarController = (function () {
-            function SidebarController($scope, toaster, $analytics, service, modalService, gwwService) {
+            function SidebarController($scope, toaster, $analytics, service, modalService, SIGLService) {
                 $scope.vm = this;
                 this.toaster = toaster;
                 this.angulartics = $analytics;
                 this.searchService = service;
-                this.groundwaterwatchService = gwwService;
+                this.SIGLServices = SIGLService;
                 this.modalService = modalService;
                 this.init();
             }
@@ -61,7 +61,7 @@ var GroundWaterWatch;
                 this.SelectedFilters.splice(0, this.SelectedFilters.length);
             };
             SidebarController.prototype.AddFilter = function () {
-                this.modalService.openModal(GroundWaterWatch.Services.ModalType.e_filter);
+                this.modalService.openModal(SIGL.Services.ModalType.e_filter);
             };
             //special function for searching arrays but ignoring angular hashkey
             SidebarController.prototype.checkArrayForObj = function (arr, obj) {
@@ -73,13 +73,17 @@ var GroundWaterWatch;
                 ;
                 return -1;
             };
+            SidebarController.prototype.resourceClick = function (data) {
+                console.log(data);
+            };
             //Helper Methods
             //-+-+-+-+-+-+-+-+-+-+-+-
             SidebarController.prototype.init = function () {
                 //init event handler
-                this.SelectedFilters = this.groundwaterwatchService.SelectedGWFilters;
+                //this.SelectedFilters = this.SIGLService.SelectedGWFilters;
                 this.sideBarCollapsed = false;
                 this.selectedProcedure = ProcedureType.Search;
+                this.resources = this.SIGLServices.ResourceList;
             };
             SidebarController.prototype.canUpdateProcedure = function (pType) {
                 //console.log('in canUpdateProcedure');
@@ -110,7 +114,7 @@ var GroundWaterWatch;
             };
             //Constructor
             //-+-+-+-+-+-+-+-+-+-+-+-
-            SidebarController.$inject = ['$scope', 'toaster', '$analytics', 'WiM.Services.SearchAPIService', 'GroundWaterWatch.Services.ModalService', 'GroundWaterWatch.Services.GroundWaterWatchService'];
+            SidebarController.$inject = ['$scope', 'toaster', '$analytics', 'WiM.Services.SearchAPIService', 'SIGL.Services.ModalService', 'SIGL.Services.SIGLService'];
             return SidebarController;
         }()); //end class
         var ProcedureType;
@@ -119,8 +123,8 @@ var GroundWaterWatch;
             ProcedureType[ProcedureType["NetworkType"] = 2] = "NetworkType";
             ProcedureType[ProcedureType["Filter"] = 3] = "Filter";
         })(ProcedureType || (ProcedureType = {}));
-        angular.module('GroundWaterWatch.Controllers')
-            .controller('GroundWaterWatch.Controllers.SidebarController', SidebarController);
-    })(Controllers = GroundWaterWatch.Controllers || (GroundWaterWatch.Controllers = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module
+        angular.module('SIGL.Controllers')
+            .controller('SIGL.Controllers.SidebarController', SidebarController);
+    })(Controllers = SIGL.Controllers || (SIGL.Controllers = {}));
+})(SIGL || (SIGL = {})); //end module
 //# sourceMappingURL=SidebarController.js.map

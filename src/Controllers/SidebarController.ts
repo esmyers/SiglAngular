@@ -23,11 +23,11 @@
 //04.14.2015 jkn - Created
 
 //Imports"
-module GroundWaterWatch.Controllers {
+module SIGL.Controllers {
 
     declare var search_api;
 
-    'use strinct';
+    'use strict';
     interface ISidebarControllerScope extends ng.IScope {
         vm: SidebarController;
     }
@@ -39,11 +39,13 @@ module GroundWaterWatch.Controllers {
         selectedProcedure: ProcedureType;
         setProcedureType(pType: ProcedureType): void;
         toggleSideBar(): void;
+        resources: Array<any>;
+        
     }
     
     class SidebarController implements ISidebarController {
         private searchService: WiM.Services.ISearchAPIService;
-        private groundwaterwatchService: Services.IGroundWaterWatchService;
+        private SIGLServices: Services.ISIGLService;
         private angulartics: any;
         private toaster: any;
         private modalService: Services.IModalService;
@@ -52,19 +54,20 @@ module GroundWaterWatch.Controllers {
         //-+-+-+-+-+-+-+-+-+-+-+-
         public sideBarCollapsed: boolean;
         public selectedProcedure: ProcedureType;
-        public SelectedFilters: Array<Models.IGroundWaterFilterSite>;    
+        public SelectedFilters: Array<Models.IGroundWaterFilterSite>;   
+        public resources: Array<any>; 
 
 
         //Constructor
         //-+-+-+-+-+-+-+-+-+-+-+-
-        static $inject = ['$scope', 'toaster', '$analytics', 'WiM.Services.SearchAPIService', 'GroundWaterWatch.Services.ModalService', 'GroundWaterWatch.Services.GroundWaterWatchService'];
-        constructor($scope: ISidebarControllerScope, toaster, $analytics, service: WiM.Services.ISearchAPIService, modalService:Services.IModalService, gwwService: Services.IGroundWaterWatchService) {
+        static $inject = ['$scope', 'toaster', '$analytics', 'WiM.Services.SearchAPIService', 'SIGL.Services.ModalService', 'SIGL.Services.SIGLService'];
+        constructor($scope: ISidebarControllerScope, toaster, $analytics, service: WiM.Services.ISearchAPIService, modalService:Services.IModalService, SIGLService: Services.ISIGLService) {
             $scope.vm = this;
            
             this.toaster = toaster;
             this.angulartics = $analytics;
             this.searchService = service;
-            this.groundwaterwatchService = gwwService;
+            this.SIGLServices = SIGLService;
             this.modalService = modalService;
 
             this.init();
@@ -110,14 +113,19 @@ module GroundWaterWatch.Controllers {
             return -1;
         }
 
+        public resourceClick(data): void {
+            console.log(data);   
+        }
+
         //Helper Methods
         //-+-+-+-+-+-+-+-+-+-+-+-
         private init(): void { 
             //init event handler
 
-            this.SelectedFilters = this.groundwaterwatchService.SelectedGWFilters;
+            //this.SelectedFilters = this.SIGLService.SelectedGWFilters;
             this.sideBarCollapsed = false;
             this.selectedProcedure = ProcedureType.Search;
+            this.resources = this.SIGLServices.ResourceList;
         }
         private canUpdateProcedure(pType: ProcedureType): boolean {
             //console.log('in canUpdateProcedure');
@@ -167,8 +175,8 @@ module GroundWaterWatch.Controllers {
         Filter = 3
     }
 
-    angular.module('GroundWaterWatch.Controllers')
-        .controller('GroundWaterWatch.Controllers.SidebarController', SidebarController)
+    angular.module('SIGL.Controllers')
+        .controller('SIGL.Controllers.SidebarController', SidebarController)
     
 }//end module
  

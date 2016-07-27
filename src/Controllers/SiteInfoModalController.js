@@ -18,30 +18,29 @@ var __extends = (this && this.__extends) || function (d, b) {
 //discussion:
 //Comments
 //05.11.2016 jkn - Created
+//07320.2016 esm - Modified for SIGL
 //Import
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Controllers;
     (function (Controllers) {
         'use string';
         var SiteInfoModalController = (function (_super) {
             __extends(SiteInfoModalController, _super);
-            function SiteInfoModalController($scope, $http, $sce, modal, gwwservice, eventManager) {
-                var _this = this;
-                _super.call(this, $http, configuration.baseurls['GroundWaterWatch']);
+            function SiteInfoModalController($scope, $http, $sce, modal, siglservice, eventManager) {
+                _super.call(this, $http, configuration.baseurls['SIGL']);
                 $scope.vm = this;
                 this.sce = $sce;
                 this.modalInstance = modal;
-                this.gwwServices = gwwservice;
+                this.siglServices = siglservice;
                 this.eventManager = eventManager;
                 this.siteLoaded = false;
                 this.init();
                 //subscribe to events
-                this.eventManager.SubscribeToEvent(GroundWaterWatch.Services.onSelectedGWSiteChanged, new WiM.Event.EventHandler(function () {
-                    console.log('detected a mouse click/gww site query', _this.gwwServices.SelectedGWSite);
-                    if (_this.gwwServices.SelectedGWSite)
-                        _this.getOldGWWpage();
-                }));
+                //this.eventManager.SubscribeToEvent(Services.onSelectedGWSiteChanged, new WiM.Event.EventHandler<WiM.Event.EventArgs>(() => {
+                //    console.log('detected a mouse click/gww site query', this.siglServices.SelectedGWSite);
+                //    if (this.siglServices.SelectedGWSite) this.getOldGWWpage();
+                //})); 
             }
             //Methods  
             //-+-+-+-+-+-+-+-+-+-+-+-
@@ -58,7 +57,8 @@ var GroundWaterWatch;
             SiteInfoModalController.prototype.getOldGWWpage = function () {
                 var _this = this;
                 this.pagecontent = '';
-                var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fgroundwaterwatch.usgs.gov%2FAWLSites.asp%3Fmt%3Dg%26S%3D" + this.gwwServices.SelectedGWSite['properties']['SITE_NO'] + "%26ncd%3Dawl'&format=xml&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+                var url = " ";
+                //var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D'http%3A%2F%2Fgroundwaterwatch.usgs.gov%2FAWLSites.asp%3Fmt%3Dg%26S%3D" + this.siglServices.SelectedGWSite['properties']['SITE_NO'] + "%26ncd%3Dawl'&format=xml&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
                 var request = new WiM.Services.Helpers.RequestInfo(url, true);
                 this.Execute(request).then(function (response) {
                     _this.siteLoaded = true;
@@ -82,7 +82,6 @@ var GroundWaterWatch;
                     }
                     else {
                         console.log('No page found for this site');
-                        _this.pagecontent = '<div class="alert alert-warning" role="alert">No page found for this site: ' + _this.gwwServices.SelectedGWSite['properties']['SITE_NO'] + '<a href = "http://groundwaterwatch.usgs.gov/AWLSites.asp?mt=g&S=' + _this.gwwServices.SelectedGWSite['properties']['SITE_NO'] + '&ncd=awl" target="_blank"> GWW Page link </a></div>';
                     }
                 }, function (error) {
                     console.log('No gww sites found');
@@ -97,11 +96,11 @@ var GroundWaterWatch;
             };
             //Constructor
             //-+-+-+-+-+-+-+-+-+-+-+-
-            SiteInfoModalController.$inject = ['$scope', '$http', '$sce', '$modalInstance', 'GroundWaterWatch.Services.GroundWaterWatchService', 'WiM.Event.EventManager'];
+            SiteInfoModalController.$inject = ['$scope', '$http', '$sce', '$modalInstance', 'SIGL.Services.SIGLService', 'WiM.Event.EventManager'];
             return SiteInfoModalController;
         }(WiM.Services.HTTPServiceBase)); //end  class
-        angular.module('GroundWaterWatch.Controllers')
-            .controller('GroundWaterWatch.Controllers.SiteInfoModalController', SiteInfoModalController);
-    })(Controllers = GroundWaterWatch.Controllers || (GroundWaterWatch.Controllers = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module 
+        angular.module('SIGL.Controllers')
+            .controller('SIGL.Controllers.SiteInfoModalController', SiteInfoModalController);
+    })(Controllers = SIGL.Controllers || (SIGL.Controllers = {}));
+})(SIGL || (SIGL = {})); //end module 
 //# sourceMappingURL=SiteInfoModalController.js.map

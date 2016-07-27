@@ -15,8 +15,8 @@
 //Comments
 //04.14.2015 jkn - Created
 //Imports"
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Controllers;
     (function (Controllers) {
         'use strict';
@@ -35,15 +35,15 @@ var GroundWaterWatch;
             //Methods
             //-+-+-+-+-+-+-+-+-+-+-+-
             NavbarController.prototype.openAboutModal = function () {
-                this.modalService.openModal(GroundWaterWatch.Services.ModalType.e_about);
+                this.modalService.openModal(SIGL.Services.ModalType.e_about);
             };
             //Constructor
             //-+-+-+-+-+-+-+-+-+-+-+-
-            NavbarController.$inject = ['$scope', 'GroundWaterWatch.Services.ModalService'];
+            NavbarController.$inject = ['$scope', 'SIGL.Services.ModalService'];
             return NavbarController;
         }()); //end class
-        angular.module('GroundWaterWatch.Controllers')
-            .controller('GroundWaterWatch.Controllers.NavbarController', NavbarController);
-    })(Controllers = GroundWaterWatch.Controllers || (GroundWaterWatch.Controllers = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module
+        angular.module('SIGL.Controllers')
+            .controller('SIGL.Controllers.NavbarController', NavbarController);
+    })(Controllers = SIGL.Controllers || (SIGL.Controllers = {}));
+})(SIGL || (SIGL = {})); //end module
 //# sourceMappingURL=Navbarcontroller.js.map

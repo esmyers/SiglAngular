@@ -20,8 +20,8 @@ var __extends = (this && this.__extends) || function (d, b) {
 //Comments
 //04.15.2015 jkn - Created
 //Imports"
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Controllers;
     (function (Controllers) {
         'use strict';
@@ -79,7 +79,7 @@ var GroundWaterWatch;
         }(WiM.Event.EventArgs));
         Controllers.BoundingBoxChangedEventArgs = BoundingBoxChangedEventArgs;
         var MapController = (function () {
-            function MapController($scope, toaster, $analytics, $location, $stateParams, leafletBoundsHelper, leafletData, search, exploration, eventManager, gwwservice, modal, $timeout) {
+            function MapController($scope, toaster, $analytics, $location, $stateParams, leafletBoundsHelper, leafletData, search, eventManager, siglservice, modal, $timeout) {
                 var _this = this;
                 this.$scope = $scope;
                 this.initialized = false;
@@ -101,12 +101,13 @@ var GroundWaterWatch;
                 this.$locationService = $location;
                 this.leafletBoundsHelperService = leafletBoundsHelper;
                 this.leafletData = leafletData;
-                this.explorationService = exploration;
+                //this.explorationService = exploration;
                 this.eventManager = eventManager;
-                this.gwwServices = gwwservice;
-                this.SiteList = gwwservice.GWSiteList;
+                this.siglServices = siglservice;
+                //this.SiteList = gwwservice.GWSiteList;
                 this.modalService = modal;
-                this.SiteListEnabled = false;
+                this.SiteListEnabled = true;
+                //this.bringLayerToFront("AAsiglSites");
                 //register event
                 this.eventManager.AddEvent(Controllers.onBoundingBoxChanged);
                 //subscribe to Events
@@ -127,44 +128,40 @@ var GroundWaterWatch;
                 $scope.$on('leafletDirectiveMap.dragend', function (event, args) {
                     _this.cursorStyle = 'pointer';
                 });
-                $scope.$watch(function () { return _this.bounds; }, function (newval, oldval) { return _this.mapBoundsChange(oldval, newval); });
+                // $scope.$watch(() => this.bounds, (newval, oldval) => this.mapBoundsChange(oldval, newval));
                 $scope.$on('leafletDirectiveMap.click', function (event, args) {
-                    _this.gwwServices.SelectedGWSite = null;
-                    _this.modalService.openModal(GroundWaterWatch.Services.ModalType.e_siteinfo);
+                    //this.siglServices.SelectedGWSite = null;
+                    _this.modalService.openModal(SIGL.Services.ModalType.e_siteinfo);
                     _this.leafletData.getMap().then(function (map) {
                         var boundsString = map.getBounds().toBBoxString();
                         var x = Math.round(map.layerPointToContainerPoint(args.leafletEvent.layerPoint).x);
                         var y = Math.round(map.layerPointToContainerPoint(args.leafletEvent.layerPoint).y);
                         var width = map.getSize().x;
                         var height = map.getSize().y;
-                        _this.gwwServices.queryGWsite(args.leafletEvent.latlng, boundsString, x, y, width, height);
+                        //this.siglServices.queryGWsite(args.leafletEvent.latlng, boundsString,x,y,width,height)
                     });
                 });
-                $scope.$watch(function () { return _this.bounds; }, function (newval, oldval) { return _this.mapBoundsChange(oldval, newval); });
-                $scope.$watch(function () { return _this.explorationService.elevationProfileGeoJSON; }, function (newval, oldval) {
-                    if (newval)
-                        _this.displayElevationProfile();
-                });
-                $scope.$watch(function () { return _this.explorationService.drawElevationProfile; }, function (newval, oldval) {
-                    if (newval)
-                        _this.elevationProfile();
-                });
-                $scope.$watch(function () { return _this.explorationService.drawMeasurement; }, function (newval, oldval) {
-                    //console.log('measurementListener ', newval, oldval);
-                    if (newval)
-                        _this.measurement();
-                });
-                $scope.$watch(function () { return _this.SiteList; }, function (newval, oldval) {
-                    //console.log('measurementListener ', newval, oldval);
-                    if (newval.length > 0)
-                        _this.SiteListEnabled = true;
-                    else
-                        _this.SiteListEnabled = false;
-                });
-                $scope.$watchCollection(function () { return _this.gwwServices.SelectedGWFilters; }, function (newval, oldval) {
-                    if (newval)
-                        _this.updateMapFilters();
-                });
+                //$scope.$watch(() => this.bounds, (newval, oldval) => this.mapBoundsChange(oldval, newval));
+                /* $scope.$watch(() => this.explorationService.elevationProfileGeoJSON,(newval, oldval) => {
+                     if (newval) this.displayElevationProfile()
+                 });
+     
+                 $scope.$watch(() => this.explorationService.drawElevationProfile,(newval, oldval) => {
+                     if (newval) this.elevationProfile();
+                 });
+     
+                 $scope.$watch(() => this.explorationService.drawMeasurement,(newval, oldval) => {
+                     //console.log('measurementListener ', newval, oldval);
+                     if (newval) this.measurement();
+                 });*/
+                /* $scope.$watch(() => this.SiteList, (newval, oldval) => {
+                     //console.log('measurementListener ', newval, oldval);
+                     if (newval.length > 0) this.SiteListEnabled = true;
+                     else this.SiteListEnabled = true;
+                 });*/
+                //$scope.$watchCollection(() => this.siglServices.SelectedGWFilters, (newval, oldval) => {
+                //    if (newval) this.updateMapFilters()
+                //});
                 $timeout(function () {
                     _this.leafletData.getMap().then(function (map) { map.invalidateSize(); });
                 });
@@ -238,50 +235,65 @@ var GroundWaterWatch;
             };
             MapController.prototype.initiateStreamgageQuery = function () {
                 //change cursor here if needed
-                this.explorationService.allowStreamgageQuery = !this.explorationService.allowStreamgageQuery;
+                console.log('initiateStreamgageQuery(), mapcontroller.ts ln 346');
+                // this.explorationService.allowStreamgageQuery = !this.explorationService.allowStreamgageQuery;  
             };
-            MapController.prototype.elevationProfile = function () {
-                var _this = this;
+            /*private elevationProfile() {
+    
                 document.getElementById('measurement-div').innerHTML = '';
                 this.explorationService.measurementData = '';
                 this.explorationService.showElevationChart = true;
+    
                 var el;
+    
                 //get reference to elevation control
-                this.controls.custom.forEach(function (control) {
-                    if (control._container.className.indexOf("elevation") > -1)
-                        el = control;
+                this.controls.custom.forEach((control) => {
+                    if (control._container.className.indexOf("elevation") > -1) el = control;
                 });
+    
                 //report ga event
                 this.angulartics.eventTrack('explorationTools', { category: 'Map', label: 'elevationProfile' });
-                this.leafletData.getMap().then(function (map) {
-                    _this.leafletData.getLayers().then(function (maplayers) {
+    
+                this.leafletData.getMap().then((map: any) => {
+                    this.leafletData.getLayers().then((maplayers: any) => {
+    
                         //create draw control
                         var drawnItems = maplayers.overlays.draw;
                         drawnItems.clearLayers();
-                        _this.drawController({ metric: false }, true);
-                        delete _this.geojson['elevationProfileLine3D'];
-                        map.on('draw:drawstart', function (e) {
+    
+                        this.drawController({ metric: false }, true);
+    
+                        delete this.geojson['elevationProfileLine3D'];
+    
+                        map.on('draw:drawstart',(e) => {
                             //console.log('in draw start');
                             el.clear();
                         });
+    
                         //listen for end of draw
-                        map.on('draw:created', function (e) {
+                        map.on('draw:created',(e) => {
+    
                             map.removeEventListener('draw:created');
+    
                             var feature = e.layer.toGeoJSON();
+                
                             //convert to esriJSON
-                            var esriJSON = '{"geometryType":"esriGeometryPolyline","spatialReference":{"wkid":"4326"},"fields": [],"features":[{"geometry": {"type":"polyline", "paths":[' + JSON.stringify(feature.geometry.coordinates) + ']}}]}';
+                            var esriJSON = '{"geometryType":"esriGeometryPolyline","spatialReference":{"wkid":"4326"},"fields": [],"features":[{"geometry": {"type":"polyline", "paths":[' + JSON.stringify(feature.geometry.coordinates) + ']}}]}'
+    
                             //make the request
-                            _this.cursorStyle = 'wait';
-                            _this.toaster.pop("info", "Information", "Querying the elevation service...", 0);
-                            _this.explorationService.elevationProfile(esriJSON);
-                            //disable button 
-                            _this.explorationService.drawElevationProfile = false;
+                            this.cursorStyle = 'wait'
+                            this.toaster.pop("info", "Information", "Querying the elevation service...", 0);
+                            this.explorationService.elevationProfile(esriJSON)
+    
+                            //disable button
+                            this.explorationService.drawElevationProfile = false;
+    
                             //force map refresh
                             map.panBy([0, 1]);
                         });
                     });
                 });
-            };
+            }*/
             MapController.prototype.drawController = function (options, enable) {
                 //console.log('in drawcontroller: ', options, enable);
                 var _this = this;
@@ -297,13 +309,14 @@ var GroundWaterWatch;
                     _this.drawControl.enable();
                 });
             };
-            MapController.prototype.displayElevationProfile = function () {
+            /*private displayElevationProfile() {
+    
                 //get reference to elevation control
                 var el;
-                this.controls.custom.forEach(function (control) {
-                    if (control._container && control._container.className.indexOf("elevation") > -1)
-                        el = control;
+                this.controls.custom.forEach((control) => {
+                    if (control._container && control._container.className.indexOf("elevation") > -1) el = control;
                 });
+    
                 //parse it
                 this.geojson["elevationProfileLine3D"] = {
                     data: this.explorationService.elevationProfileGeoJSON,
@@ -313,15 +326,17 @@ var GroundWaterWatch;
                         "opacity": 0.65
                     },
                     onEachFeature: el.addData.bind(el)
-                };
-                this.leafletData.getMap().then(function (map) {
+                }
+    
+                this.leafletData.getMap().then((map: any) => {
                     var container = el.onAdd(map);
                     document.getElementById('elevation-div').innerHTML = '';
                     document.getElementById('elevation-div').appendChild(container);
                 });
+    
                 this.toaster.clear();
-                this.cursorStyle = 'pointer';
-            };
+                this.cursorStyle = 'pointer'
+            }*/
             MapController.prototype.showLocation = function () {
                 //get reference to location control
                 var lc;
@@ -335,65 +350,75 @@ var GroundWaterWatch;
                 this.removeOverlayLayers("_region", true);
                 this.center = new Center(39, -100, 3);
             };
-            MapController.prototype.resetExplorationTools = function () {
-                document.getElementById('elevation-div').innerHTML = '';
-                document.getElementById('measurement-div').innerHTML = '';
-                if (this.drawControl)
-                    this.drawController({}, false);
-                this.explorationService.allowStreamgageQuery = false;
-                this.explorationService.drawMeasurement = false;
-                this.explorationService.measurementData = '';
-                this.explorationService.drawElevationProfile = false;
-                this.explorationService.showElevationChart = false;
-            };
-            MapController.prototype.measurement = function () {
+            /* private resetExplorationTools() {
+                 document.getElementById('elevation-div').innerHTML = '';
+                 document.getElementById('measurement-div').innerHTML = '';
+                 if (this.drawControl) this.drawController({ }, false);
+                 this.explorationService.allowStreamgageQuery = false;
+                 this.explorationService.drawMeasurement = false;
+                 this.explorationService.measurementData = '';
+                 this.explorationService.drawElevationProfile = false;
+                 this.explorationService.showElevationChart = false;
+             }*/
+            /*private measurement() {
+    
                 //console.log('in measurement tool');
-                var _this = this;
+    
                 document.getElementById('elevation-div').innerHTML = '';
                 //user affordance
                 this.explorationService.measurementData = 'Click the map to begin\nDouble click to end the Drawing';
+    
                 //report ga event
                 this.angulartics.eventTrack('explorationTools', { category: 'Map', label: 'measurement' });
-                this.leafletData.getMap().then(function (map) {
+    
+                this.leafletData.getMap().then((map: any) => {
                     //console.log('got map: ', map);
-                    _this.leafletData.getLayers().then(function (maplayers) {
+                    this.leafletData.getLayers().then((maplayers: any) => {
                         //console.log('got maplayers: ', maplayers);
                         var stopclick = false; //to prevent more than one click listener
-                        _this.drawController({ shapeOptions: { color: 'blue' }, metric: false }, true);
+    
+                        this.drawController({shapeOptions: { color: 'blue' }, metric: false }, true);
+    
                         var drawnItems = maplayers.overlays.draw;
                         drawnItems.clearLayers();
+                
                         //listeners active during drawing
-                        var measuremove = function () {
-                            _this.explorationService.measurementData = "Total length: " + _this.drawControl._getMeasurementString();
+                        var measuremove = () => {
+                            this.explorationService.measurementData = "Total length: " + this.drawControl._getMeasurementString();
                         };
-                        var measurestart = function () {
+                        var measurestart = () => {
                             if (stopclick == false) {
                                 stopclick = true;
-                                _this.explorationService.measurementData = "Total Length: ";
+                                this.explorationService.measurementData = "Total Length: ";
                                 map.on("mousemove", measuremove);
-                            }
-                            ;
+                            };
                         };
-                        var measurestop = function (e) {
+    
+                        var measurestop = (e) => {
                             var layer = e.layer;
                             drawnItems.addLayer(layer);
                             drawnItems.addTo(map);
+                
                             //reset button
-                            _this.explorationService.measurementData = "Total length: " + _this.drawControl._getMeasurementString();
+                            this.explorationService.measurementData = "Total length: " + this.drawControl._getMeasurementString();
                             //remove listeners
                             map.off("click", measurestart);
                             map.off("mousemove", measuremove);
                             map.off("draw:created", measurestop);
-                            _this.drawControl.disable();
-                            _this.explorationService.drawMeasurement = false;
+    
+                            this.drawControl.disable();
+                            this.explorationService.drawMeasurement = false;
                         };
+    
                         map.on("click", measurestart);
                         map.on("draw:created", measurestop);
+    
+    
                     });
                 });
-            };
+            }*/
             MapController.prototype.onSelectedGWSiteChanged = function () {
-                this.modalService.openModal(GroundWaterWatch.Services.ModalType.e_siteinfo);
+                this.modalService.openModal(SIGL.Services.ModalType.e_siteinfo);
             };
             MapController.prototype.onSelectedAreaOfInterestChanged = function (sender, e) {
                 //ga event
@@ -471,32 +496,13 @@ var GroundWaterWatch;
                 } //next variable
                 return layeridList;
             };
-            MapController.prototype.updateMapFilters = function () {
-                if (!this.initialized)
-                    return;
-                var statesfilter = "";
-                var groupedFeature = this.gwwServices.SelectedGWFilters.group("Type");
-                this.leafletData.getLayers().then(function (maplayers) {
-                    var states = groupedFeature.hasOwnProperty("1") ? groupedFeature["1"].map(function (item) { return item.Name; }) : null;
-                    if (states !== null)
-                        statesfilter = "STATE_NM in ('" + states.join("','") + "')";
-                    if (states !== null) {
-                        console.log(statesfilter);
-                        maplayers.overlays["gww"].wmsParams.CQL_FILTER = statesfilter;
-                    }
-                    else {
-                        delete maplayers.overlays["gww"].wmsParams.CQL_FILTER;
-                    }
-                    maplayers.overlays["gww"].redraw();
-                }); //end get layers
-            };
             //Constructor
             //-+-+-+-+-+-+-+-+-+-+-+-
-            MapController.$inject = ['$scope', 'toaster', '$analytics', '$location', '$stateParams', 'leafletBoundsHelpers', 'leafletData', 'WiM.Services.SearchAPIService', 'GroundWaterWatch.Services.ExplorationService', 'WiM.Event.EventManager', 'GroundWaterWatch.Services.GroundWaterWatchService', 'GroundWaterWatch.Services.ModalService', '$timeout'];
+            MapController.$inject = ['$scope', 'toaster', '$analytics', '$location', '$stateParams', 'leafletBoundsHelpers', 'leafletData', 'WiM.Services.SearchAPIService', 'WiM.Event.EventManager', 'SIGL.Services.SIGLService', 'SIGL.Services.ModalService', '$timeout'];
             return MapController;
         }()); //end class
-        angular.module('GroundWaterWatch.Controllers')
-            .controller('GroundWaterWatch.Controllers.MapController', MapController);
-    })(Controllers = GroundWaterWatch.Controllers || (GroundWaterWatch.Controllers = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module
+        angular.module('SIGL.Controllers')
+            .controller('SIGL.Controllers.MapController', MapController);
+    })(Controllers = SIGL.Controllers || (SIGL.Controllers = {}));
+})(SIGL || (SIGL = {})); //end module
 //# sourceMappingURL=MapController.js.map

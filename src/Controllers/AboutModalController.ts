@@ -21,7 +21,7 @@
 
 //Import
 
-module GroundWaterWatch.Controllers {
+module SIGL.Controllers {
     'use string';
     interface IAboutModalControllerScope extends ng.IScope {
         vm: IAboutModalController;
@@ -61,6 +61,6 @@ module GroundWaterWatch.Controllers {
       
     }//end  class
 
-    angular.module('GroundWaterWatch.Controllers')
-        .controller('GroundWaterWatch.Controllers.AboutModalController', AboutModalController);
+    angular.module('SIGL.Controllers')
+        .controller('SIGL.Controllers.AboutModalController', AboutModalController);
 }//end module 

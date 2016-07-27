@@ -19,7 +19,7 @@
 //Comments
 //05.11.2016 jkn - Created
 
-module GroundWaterWatch.Controllers {
+module SIGL.Controllers {
 
     'use string';
     interface IFilterModalControllerScope extends ng.IScope {
@@ -42,7 +42,7 @@ module GroundWaterWatch.Controllers {
         //Properties
         //-+-+-+-+-+-+-+-+-+-+-+-
         private modalInstance: ng.ui.bootstrap.IModalServiceInstance;
-        private GWWService: Services.IGroundWaterWatchService;
+        private SIGLService: Services.ISIGLService;
 
         public StateList: Array<Models.IGroundWaterFilterSite>;
         public CountyList: Array<Models.IGroundWaterFilterSite>;
@@ -53,11 +53,11 @@ module GroundWaterWatch.Controllers {
         public SelectedAquifers: Array<Models.IGroundWaterFilterSite>;
         //Constructor
         //-+-+-+-+-+-+-+-+-+-+-+-
-        static $inject = ['$scope', '$modalInstance', 'GroundWaterWatch.Services.GroundWaterWatchService'];
-        constructor($scope: IFilterModalControllerScope, modal:ng.ui.bootstrap.IModalServiceInstance, gwwService:Services.IGroundWaterWatchService) {
+        static $inject = ['$scope', '$modalInstance', 'SIGL.Services.SIGLService'];
+        constructor($scope: IFilterModalControllerScope, modal:ng.ui.bootstrap.IModalServiceInstance, SIGLService:Services.ISIGLService) {
             $scope.vm = this;
             this.modalInstance = modal;
-            this.GWWService = gwwService;
+            this.SIGLService = SIGLService;
             this.init();  
         }  
         
@@ -65,9 +65,9 @@ module GroundWaterWatch.Controllers {
         //-+-+-+-+-+-+-+-+-+-+-+-
 
         public Close(): void {
-            if(this.SelectedStates.length >0) this.GWWService.AddFilterTypes(this.SelectedStates);
-            if (this.SelectedCounties.length > 0) this.GWWService.AddFilterTypes(this.SelectedCounties);
-            if (this.SelectedAquifers.length > 0) this.GWWService.AddFilterTypes(this.SelectedAquifers);
+            //if(this.SelectedStates.length >0) this.GWWService.AddFilterTypes(this.SelectedStates);
+            //if (this.SelectedCounties.length > 0) this.GWWService.AddFilterTypes(this.SelectedCounties);
+            //if (this.SelectedAquifers.length > 0) this.GWWService.AddFilterTypes(this.SelectedAquifers);
             this.modalInstance.dismiss('cancel')
         }
 
@@ -92,6 +92,6 @@ module GroundWaterWatch.Controllers {
       
     }//end  class
 
-    angular.module('GroundWaterWatch.Controllers')
-        .controller('GroundWaterWatch.Controllers.FilterModalController', FilterModalController);
+    angular.module('SIGL.Controllers')
+        .controller('SIGL.Controllers.FilterModalController', FilterModalController);
 }//end module 

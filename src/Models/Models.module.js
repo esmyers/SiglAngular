@@ -1,6 +1,6 @@
 (function () {
     'use strict';
     angular
-        .module('GroundWaterWatch.Models', []);
+        .module('SIGL.Models', []);
 })();
 //# sourceMappingURL=Models.module.js.map

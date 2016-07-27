@@ -22,7 +22,7 @@
 
 //Imports"
 // Interface
-module GroundWaterWatch.Models {
+module SIGL.Models {
     export interface ISimpleGroundWaterSite {
         siteNO: string
         siteName: string

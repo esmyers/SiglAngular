@@ -16,8 +16,8 @@
 //08.20.2014 jkn - Created
 //Imports"
 // Interface
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Models;
     (function (Models) {
         var GroundWaterFilterSite = (function () {
@@ -34,6 +34,6 @@ var GroundWaterWatch;
             FilterType[FilterType["AQUIFER"] = 3] = "AQUIFER";
         })(Models.FilterType || (Models.FilterType = {}));
         var FilterType = Models.FilterType;
-    })(Models = GroundWaterWatch.Models || (GroundWaterWatch.Models = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module 
+    })(Models = SIGL.Models || (SIGL.Models = {}));
+})(SIGL || (SIGL = {})); //end module 
 //# sourceMappingURL=SitesFilter.js.map

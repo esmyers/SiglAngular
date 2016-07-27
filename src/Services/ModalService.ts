@@ -23,7 +23,7 @@
 //06.16.2015 mjs - Created
 
 //Import
-module GroundWaterWatch.Services {
+module SIGL.Services {
     'use strict'
     export interface IModalService {
         openModal(mType: ModalType, options?: IModalOptions);
@@ -73,7 +73,7 @@ module GroundWaterWatch.Services {
                     case ModalType.e_filter:
                     return {
                         templateUrl: 'Views/filtermodal.html',
-                        controller: 'GroundWaterWatch.Controllers.FilterModalController',
+                        controller: 'SIGL.Controllers.FilterModalController',
                         size: 'lg',
                         backdropClass: 'backdropZ',
                         backdrop: 'static',
@@ -82,7 +82,7 @@ module GroundWaterWatch.Services {
                     case ModalType.e_about:
                         return {
                             templateUrl: 'Views/aboutmodal.html',
-                            controller: 'GroundWaterWatch.Controllers.AboutModalController',
+                            controller: 'SIGL.Controllers.AboutModalController',
                             size: 'lg',
                             backdropClass: 'backdropZ',
                             backdrop: 'static',
@@ -91,7 +91,7 @@ module GroundWaterWatch.Services {
                     case ModalType.e_siteinfo:
                         return {
                             templateUrl: 'Views/siteinfomodal.html',
-                            controller: 'GroundWaterWatch.Controllers.SiteInfoModalController',
+                            controller: 'SIGL.Controllers.SiteInfoModalController',
                             size: 'lg',
                             backdropClass: 'backdropZ',
                             backdrop: 'static',
@@ -100,7 +100,7 @@ module GroundWaterWatch.Services {
                     default:
                         return {
                             templateUrl: 'Views/aboutmodal.html',
-                            controller: 'GroundWaterWatch.Controllers.AboutModalController',
+                            controller: 'SIGL.Controllers.AboutModalController',
                             size: 'lg',
                             backdropClass: 'backdropZ',
                             backdrop: 'static',
@@ -124,6 +124,6 @@ module GroundWaterWatch.Services {
     function factory($modal: ng.ui.bootstrap.IModalService) {
         return new ModalService($modal)
     }
-    angular.module('GroundWaterWatch.Services')
-        .factory('GroundWaterWatch.Services.ModalService', factory)
+    angular.module('SIGL.Services')
+        .factory('SIGL.Services.ModalService', factory)
 }//end module  

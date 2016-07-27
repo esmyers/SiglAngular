@@ -23,7 +23,7 @@
 //04.14.2015 jkn - Created
 
 //Imports"
-module GroundWaterWatch.Controllers {
+module SIGL.Controllers {
     'use strict';
     interface INavbarControllerScope extends ng.IScope {
         vm: NavbarController;
@@ -43,7 +43,7 @@ module GroundWaterWatch.Controllers {
         }
         //Constructor
         //-+-+-+-+-+-+-+-+-+-+-+-
-        static $inject = ['$scope', 'GroundWaterWatch.Services.ModalService'];
+        static $inject = ['$scope', 'SIGL.Services.ModalService'];
         constructor($scope: INavbarControllerScope, modal: Services.IModalService) {            
             $scope.vm = this;
             this.modalService = modal;
@@ -60,8 +60,8 @@ module GroundWaterWatch.Controllers {
         //-+-+-+-+-+-+-+-+-+-+-+-
 
     }//end class
-    angular.module('GroundWaterWatch.Controllers')
-        .controller('GroundWaterWatch.Controllers.NavbarController', NavbarController)
+    angular.module('SIGL.Controllers')
+        .controller('SIGL.Controllers.NavbarController', NavbarController)
 
 }//end module
   

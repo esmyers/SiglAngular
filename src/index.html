@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" ng-app="SiglAngular">
+<html lang="en" ng-app="SIGL">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="../bower_components/wim-styles/core/css/wim.css" />
     <link rel="stylesheet" href="../bower_components/wim_angular/dist/css/wimLegend.css" />
     <link rel="stylesheet" href="../bower_components/angular-resizable/angular-resizable.min.css" />
+    <link href="../bower_components/isteven-angular-multiselect/isteven-multi-select.css" rel="stylesheet" />
     <!-- endbuild -->
     <!-- build:css styles/custom.min.css -->
     <link rel="stylesheet" href="css/main.css" />
@@ -71,20 +72,20 @@
     <script src="../bower_components/wim_angular/dist/Services/Helpers/RequestTransform.js"></script>
     <script src="../bower_components/wim_angular/dist/Events/EventManager.js"></script>
     <script src="../bower_components/wim_angular/dist/Directives/wimLegend.js"></script>
-    
+    <script src="../bower_components/isteven-angular-multiselect/isteven-multi-select.js"></script>
 
     <!-- endbuild -->
     
     <!-- build:js scripts/custom.min.js -->
     <script src="Config.js"></script>
     <!-- Models ref-->
-    <script src="Models/GroundWaterWatchSite.js"></script>
+    <script src="Models/SIGLSite.js"></script>
     <script src="Models/SitesFilter.js"></script>
     <!-- Services ref-->
     <script src="Services/service.module.js"></script>
-    <script src="Services/ExplorationService.js"></script>
+    <!--<script src="Services/ExplorationService.js"></script>-->
     <script src="Services/ModalService.js"></script>
-    <script src="Services/GroundWaterWatchService.js"></script>
+    <script src="Services/SIGLService.js"></script>
     <!-- Controllers ref-->
     <script src="Controllers/controller.module.js"></script>
     <script src="Controllers/MapController.js"></script>

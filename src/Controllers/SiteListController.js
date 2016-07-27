@@ -15,16 +15,16 @@
 //Comments
 //05.13.2016 jkn - Created
 //Imports"
-var GroundWaterWatch;
-(function (GroundWaterWatch) {
+var SIGL;
+(function (SIGL) {
     var Controllers;
     (function (Controllers) {
         'use strict';
         var SiteListController = (function () {
-            function SiteListController($scope, gwwservice) {
+            function SiteListController($scope, siglservice) {
                 $scope.vm = this;
-                this.gwwServices = gwwservice;
-                this.SiteList = gwwservice.GWSiteList;
+                this.siglServices = siglservice;
+                // this.SiteList = gwwservice.GWSiteList;
                 this.isShown = true;
             }
             //Methods
@@ -34,11 +34,11 @@ var GroundWaterWatch;
             };
             //Constructor
             //-+-+-+-+-+-+-+-+-+-+-+-
-            SiteListController.$inject = ['$scope', 'GroundWaterWatch.Services.GroundWaterWatchService'];
+            SiteListController.$inject = ['$scope', 'SIGL.Services.SIGLService'];
             return SiteListController;
         }()); //end class
-        angular.module('GroundWaterWatch.Controllers')
-            .controller('GroundWaterWatch.Controllers.SiteListController', SiteListController);
-    })(Controllers = GroundWaterWatch.Controllers || (GroundWaterWatch.Controllers = {}));
-})(GroundWaterWatch || (GroundWaterWatch = {})); //end module
+        angular.module('SIGL.Controllers')
+            .controller('SIGL.Controllers.SiteListController', SiteListController);
+    })(Controllers = SIGL.Controllers || (SIGL.Controllers = {}));
+})(SIGL || (SIGL = {})); //end module
 //# sourceMappingURL=SiteListController.js.map
